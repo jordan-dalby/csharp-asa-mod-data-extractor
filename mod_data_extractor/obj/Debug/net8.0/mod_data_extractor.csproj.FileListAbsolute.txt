@@ -36,3 +36,4 @@ E:\Google Drive\vscode-workspace\cs_mod_data_extractor\mod_data_extractor\obj\De
 E:\Google Drive\vscode-workspace\cs_mod_data_extractor\mod_data_extractor\obj\Debug\net8.0\mod_data_extractor.pdb
 E:\Google Drive\vscode-workspace\cs_mod_data_extractor\mod_data_extractor\obj\Debug\net8.0\mod_data_extractor.genruntimeconfig.cache
 E:\Google Drive\vscode-workspace\cs_mod_data_extractor\mod_data_extractor\obj\Debug\net8.0\ref\mod_data_extractor.dll
+E:\Google Drive\vscode-workspace\cs_mod_data_extractor\mod_data_extractor\obj\Debug\net8.0\mod_data_extractor.sourcelink.json
