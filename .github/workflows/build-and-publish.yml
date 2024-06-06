@@ -1,0 +1,57 @@
+name: Build and Publish
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 8.x.x
+
+      - name: Build for Windows x64
+        run: dotnet publish -c Release -r win-x64
+
+      - name: Build for MacOS x64
+        run: dotnet publish -c Release -r osx-x64
+
+      - name: Build for Linux x64
+        run: dotnet publish -c Release -r linux-x64
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.run_number }}
+          release_name: Release ${{ github.run_number }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Windows artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Windows Artifact
+          path: ./bin/Release/netcoreapp8.0/win-x64/publish
+
+      - name: Upload MacOS artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: MacOS Artifact
+          path: ./bin/Release/netcoreapp8.0/osx-x64/publish
+
+      - name: Upload Linux artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Linux Artifact
+          path: ./bin/Release/netcoreapp8.0/linux-x64/publish

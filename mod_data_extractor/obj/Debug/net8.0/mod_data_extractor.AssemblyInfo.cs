@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("mod_data_extractor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+43d5e3dfca9e1c513fb758fbb5ecccc246a7b184")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+115df12bd80e536607ace70e2f221350aa8f2de9")]
 [assembly: System.Reflection.AssemblyProductAttribute("mod_data_extractor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("mod_data_extractor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
