@@ -1,3 +1,0 @@
-E:\Google Drive\vscode-workspace\cs_mod_data_extractor\mod_data_extractor\bin\Release\net8.0\linux-x64\publish\mod_data_extractor.pdb
-E:\Google Drive\vscode-workspace\cs_mod_data_extractor\mod_data_extractor\bin\Release\net8.0\linux-x64\publish\CUE4Parse-Natives.dll
-E:\Google Drive\vscode-workspace\cs_mod_data_extractor\mod_data_extractor\bin\Release\net8.0\linux-x64\publish\mod_data_extractor
