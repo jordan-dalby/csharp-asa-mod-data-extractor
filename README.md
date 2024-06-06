@@ -18,4 +18,7 @@ This tool can be used either with a server set up, or an ARK Survival Ascended f
   
 e.g. `mod_data_extractor.exe --debug --input "c:\my\path" --output "c:\my\other\path" --badfile "c:\my\path\badfiles.txt"`  
   
-A sample badfiles.txt is provided
+A sample badfiles.txt is provided  
+  
+Executables found in the Releases  
+https://github.com/jordan-dalby/csharp-asa-mod-data-extractor/releases
