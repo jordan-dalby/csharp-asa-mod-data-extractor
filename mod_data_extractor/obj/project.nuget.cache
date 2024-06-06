@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "aHTbue7IHEo=",
+  "dgSpecHash": "qbgSp1iTioI=",
   "success": true,
   "projectFilePath": "E:\\Google Drive\\vscode-workspace\\cs_mod_data_extractor\\mod_data_extractor\\mod_data_extractor.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\jorda\\.nuget\\packages\\commandlineparser\\2.9.1\\commandlineparser.2.9.1.nupkg.sha512",
     "C:\\Users\\jorda\\.nuget\\packages\\cue4parse\\1.1.1\\cue4parse.1.1.1.nupkg.sha512",
     "C:\\Users\\jorda\\.nuget\\packages\\dotnetzip\\1.16.0\\dotnetzip.1.16.0.nupkg.sha512",
     "C:\\Users\\jorda\\.nuget\\packages\\infrablack.ue4config\\0.7.2.97\\infrablack.ue4config.0.7.2.97.nupkg.sha512",

@@ -9,11 +9,20 @@
       "mod_data_extractor/1.0.0": {
         "dependencies": {
           "CUE4Parse": "1.1.1",
+          "CommandLineParser": "2.9.1",
           "Newtonsoft.Json": "13.0.3",
           "Oodle.NET": "2.0.2"
         },
         "runtime": {
           "mod_data_extractor.dll": {}
+        }
+      },
+      "CommandLineParser/2.9.1": {
+        "runtime": {
+          "lib/netstandard2.0/CommandLine.dll": {
+            "assemblyVersion": "2.9.1.0",
+            "fileVersion": "2.9.1.0"
+          }
         }
       },
       "CUE4Parse/1.1.1": {
@@ -245,6 +254,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "CommandLineParser/2.9.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OE0sl1/sQ37bjVsPKKtwQlWDgqaxWgtme3xZz7JssWUzg5JpMIyHgCTY9MVMxOg48fJ1AgGT3tgdH5m/kQ5xhA==",
+      "path": "commandlineparser/2.9.1",
+      "hashPath": "commandlineparser.2.9.1.nupkg.sha512"
     },
     "CUE4Parse/1.1.1": {
       "type": "package",

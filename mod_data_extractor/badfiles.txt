@@ -1,0 +1,17 @@
+ShooterGame/Content/PrimalEarth/WeaponSpittingPlant/SM_SpittingPlantSTG1
+ShooterGame/Content/PrimalEarth/WeaponSpittingPlant/SM_SpittingPlantSTG2
+ShooterGame/Content/PrimalEarth/WeaponSpittingPlant/SM_SpittingPlantSTG3
+ShooterGame/Content/PrimalEarth/Items/Citronal/CitronalSmall_SM
+ShooterGame/Content/PrimalEarth/Items/Cantaloupe/CantaloupeSmall_SM
+ShooterGame/Content/PrimalEarth/Items/Cantaloupe/CantaloupeMed_SM
+ShooterGame/Content/PrimalEarth/Items/Carrot/CarrotLarge_SM
+ShooterGame/Content/PrimalEarth/Items/Potato/PotatoPlantLarge_Fruitless_SM
+ShooterGame/Content/PrimalEarth/Items/Potato/PotatoPlantMed_SM
+ShooterGame/Content/.+/Animations/
+ShooterGame/Content/.+/Effects/
+ShooterGame/Content/.+/Sounds/
+ShooterGame/Content/.+/Materials/
+ShooterGame/Content/.+/Textures/
+ShooterGame/Content/.+/Assets/Meshes/
+ShooterGame/Content/.+/Assets/Particles/
+ShooterGame/Content/.+/Environment/
