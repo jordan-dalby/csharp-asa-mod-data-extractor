@@ -42,16 +42,16 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Windows Artifact
-          path: ./bin/Release/netcoreapp8.0/win-x64/publish
+          path: /home/runner/work/csharp-asa-mod-data-extractor/csharp-asa-mod-data-extractor/mod_data_extractor/bin/Release/net8.0/win-x64/publish/
 
       - name: Upload MacOS artifact
         uses: actions/upload-artifact@v2
         with:
           name: MacOS Artifact
-          path: ./bin/Release/netcoreapp8.0/osx-x64/publish
+          path: /home/runner/work/csharp-asa-mod-data-extractor/csharp-asa-mod-data-extractor/mod_data_extractor/bin/Release/netcoreapp8.0/osx-x64/publish
 
       - name: Upload Linux artifact
         uses: actions/upload-artifact@v2
         with:
           name: Linux Artifact
-          path: ./bin/Release/netcoreapp8.0/linux-x64/publish
+          path: /home/runner/work/csharp-asa-mod-data-extractor/csharp-asa-mod-data-extractor/mod_data_extractor/bin/Release/netcoreapp8.0/linux-x64/publish
