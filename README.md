@@ -16,6 +16,6 @@ This tool can be used either with a server set up, or an ARK Survival Ascended f
   -t, --targets    Optional specific directories to extract data from, leave
                    blank to extract everything  
   
-e.g. mod_data_extractor.exe --debug --input "c:\my\path" --output "c:\my\other\path" --badfile "c:\my\path\badfiles.txt"`  
+e.g. `mod_data_extractor.exe --debug --input "c:\my\path" --output "c:\my\other\path" --badfile "c:\my\path\badfiles.txt"`  
   
 A sample badfiles.txt is provided
