@@ -4,9 +4,6 @@ using CUE4Parse.FileProvider.Vfs;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 using CommandLine;
-using Serilog.Debugging;
-using System.Runtime.CompilerServices;
-using CUE4Parse.UE4.Assets;
 
 namespace UtocDumper
 {
@@ -29,6 +26,9 @@ namespace UtocDumper
 
             [Option('t', "targets", Required = false, HelpText = "Optional specific directories to extract data from, leave blank to extract everything")]
             public IEnumerable<string> Targets { get; set; }
+            
+            [Option('f', "file-types", Required = false, HelpText = "Optional argument to specify filetypes to search for", Default = new string[] { "uasset" })]
+            public IEnumerable<string> FileTypes { get; set; }
         }
 
         static void Main(string[] args)
@@ -69,9 +69,9 @@ namespace UtocDumper
 
             foreach (var entry in provider.Files.Values)
             {
-                if (!entry.Path.Contains(".uasset", StringComparison.CurrentCultureIgnoreCase)) 
-                { 
-                    continue; 
+                if (!options.Value.FileTypes.Any(extension => entry.Extension.Contains(extension, StringComparison.OrdinalIgnoreCase)))
+                {
+                    continue;
                 }
 
                 if (targets.Any())
