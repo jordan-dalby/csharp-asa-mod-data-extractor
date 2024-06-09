@@ -13,22 +13,22 @@ namespace UtocDumper
         public class Options
         {
             [Option('i', "input", Required = true, HelpText = "The directory with all of the required game files")]
-            public string InputDirectory { get; set; }
+            public string InputDirectory { get; set; } = "";
 
             [Option('o', "output", Required = true, HelpText = "The directory to output files to")]
-            public string OutputDirectory { get; set; }
+            public string OutputDirectory { get; set; } = "";
 
-            [Option('b', "badfile", Required = false, HelpText = "Location of a file containing line-by-line items to skip")]
-            public string BadFileDirectory { get; set; }
+            [Option('b', "badfile", Required = false, HelpText = "Location of a file containing line-by-line items to skip, regex enabled")]
+            public string BadFileDirectory { get; set; } = "";
 
             [Option('d', "debug", Required = false, HelpText = "Set debug mode to true or false.", Default = false)]
-            public bool Debug { get; set; }
+            public bool Debug { get; set; } = false;
 
             [Option('t', "targets", Required = false, HelpText = "Optional specific directories to extract data from, leave blank to extract everything")]
-            public IEnumerable<string> Targets { get; set; }
+            public IEnumerable<string> Targets { get; set; } = new List<string>();
             
             [Option('f', "file-types", Required = false, HelpText = "Optional argument to specify filetypes to search for", Default = new string[] { "uasset" })]
-            public IEnumerable<string> FileTypes { get; set; }
+            public IEnumerable<string> FileTypes { get; set; } = ["uasset"];
         }
 
         static void Main(string[] args)
@@ -69,13 +69,16 @@ namespace UtocDumper
 
             foreach (var entry in provider.Files.Values)
             {
+                // if the extension of the entry is not one we are looking for, skip this iteration
                 if (!options.Value.FileTypes.Any(extension => entry.Extension.Contains(extension, StringComparison.OrdinalIgnoreCase)))
                 {
                     continue;
                 }
 
+                // if the targets list has any values
                 if (targets.Any())
                 {
+                    // evaluate if the current entry is a valid target, otherwise skip this iteration
                     bool isValidTarget = targets.Any(target => entry.Path.Contains(target, StringComparison.InvariantCultureIgnoreCase));
                     if (!isValidTarget)
                     {
@@ -90,7 +93,7 @@ namespace UtocDumper
                     continue;
                 }
 
-               
+                // debug
                 if (options.Value.Debug)
                 {
                     Console.WriteLine(entry.Path);
