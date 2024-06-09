@@ -101,7 +101,7 @@ namespace UtocDumper
                     // Load all of the objects from the uasset file
                     var exports = provider.LoadAllObjects(entry.Path);
                     // Concat output file path
-                    string filePath = outputPath + @"\Exports\" + entry.PathWithoutExtension + ".json";
+                    string filePath = Path.Combine(outputPath, entry.PathWithoutExtension + ".json");
                     // Create missing directories if not exists
                     string? directoryName = new FileInfo(filePath).DirectoryName;
                     if (directoryName == null)
