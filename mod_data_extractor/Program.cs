@@ -34,6 +34,8 @@ namespace UtocDumper
             public IEnumerable<string> FileTypes { get; set; } = ["uasset"];
         }
 
+        private static JsonMergeSettings mergeSettings = new JsonMergeSettings() { MergeArrayHandling = MergeArrayHandling.Replace };
+
         static void Main(string[] args)
         {
             var options = Parser.Default.ParseArguments<Options>(args);
@@ -180,7 +182,7 @@ namespace UtocDumper
                 JObject jsonObj = JObject.FromObject(obj);
 
                 // Merge into the result
-                result.Merge(jsonObj);
+                result.Merge(jsonObj, mergeSettings);
             }
             return result;
         }
