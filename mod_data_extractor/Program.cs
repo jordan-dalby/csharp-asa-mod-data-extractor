@@ -32,6 +32,7 @@ namespace UtocDumper
             
             [Option('f', "file-types", Required = false, HelpText = "Optional argument to specify filetypes to search for", Default = new string[] { "uasset" })]
             public IEnumerable<string> FileTypes { get; set; } = ["uasset"];
+            
             [Option('v', "version", Required = false, HelpText = "The UE version to use for parsing, see https://github.com/FabianFG/CUE4Parse/blob/master/CUE4Parse/UE4/Versions/EGame.cs", Default = EGame.GAME_UE5_2)]
             public EGame UEVersion { get; set; } = EGame.GAME_UE5_2;
         }
