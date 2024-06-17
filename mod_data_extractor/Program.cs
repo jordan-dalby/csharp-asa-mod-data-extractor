@@ -32,6 +32,8 @@ namespace UtocDumper
             
             [Option('f', "file-types", Required = false, HelpText = "Optional argument to specify filetypes to search for", Default = new string[] { "uasset" })]
             public IEnumerable<string> FileTypes { get; set; } = ["uasset"];
+            [Option('v', "version", Required = false, HelpText = "The UE version to use for parsing, see https://github.com/FabianFG/CUE4Parse/blob/master/CUE4Parse/UE4/Versions/EGame.cs", Default = EGame.GAME_UE5_2)]
+            public EGame UEVersion { get; set; } = EGame.GAME_UE5_2;
         }
 
         private static JsonMergeSettings mergeSettings = new JsonMergeSettings() { MergeArrayHandling = MergeArrayHandling.Replace };
@@ -66,7 +68,7 @@ namespace UtocDumper
             List<string> targets = [.. options.Value.Targets];
 
             // Create the default file provider from the base directory, basically does everything for you
-            AbstractVfsFileProvider provider = new DefaultFileProvider(directory: inputPath, searchOption: SearchOption.AllDirectories, isCaseInsensitive: true, versions: new VersionContainer(EGame.GAME_UE5_0));
+            AbstractVfsFileProvider provider = new DefaultFileProvider(directory: inputPath, searchOption: SearchOption.AllDirectories, isCaseInsensitive: true, versions: new VersionContainer(options.Value.UEVersion));
 
             // Initialize and mount the file provider
             provider.Initialize();
