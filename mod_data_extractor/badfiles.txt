@@ -5,8 +5,10 @@ ShooterGame/Content/PrimalEarth/Items/Citronal/CitronalSmall_SM
 ShooterGame/Content/PrimalEarth/Items/Cantaloupe/CantaloupeSmall_SM
 ShooterGame/Content/PrimalEarth/Items/Cantaloupe/CantaloupeMed_SM
 ShooterGame/Content/PrimalEarth/Items/Carrot/CarrotLarge_SM
+ShooterGame/Content/PrimalEarth/Items/Carrot/CarrotMedium_SM
 ShooterGame/Content/PrimalEarth/Items/Potato/PotatoPlantLarge_Fruitless_SM
 ShooterGame/Content/PrimalEarth/Items/Potato/PotatoPlantMed_SM
+ShooterGame/Content/PrimalEarth/Items/Potato/PotatoPlantSmall_SM
 ShooterGame/Content/.+/Animations/
 ShooterGame/Content/.+/Effects/
 ShooterGame/Content/.+/Sounds/
