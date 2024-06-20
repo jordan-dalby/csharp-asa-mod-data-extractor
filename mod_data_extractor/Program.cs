@@ -7,6 +7,8 @@ using System.Text.RegularExpressions;
 using CommandLine;
 using CUE4Parse.UE4.Assets.Exports;
 using CUE4Parse.UE4.Assets;
+using CUE4Parse.UE4.Assets.Objects;
+using CUE4Parse.UE4.Assets.Objects.Properties;
 
 namespace UtocDumper
 {
@@ -119,6 +121,63 @@ namespace UtocDumper
                     {
                         List<UObject> makeup = GetClassMakeup(export);
                         JObject fullClassData = CombineClassData(makeup);
+                        if (makeup.First().ExportType == "DinoCharacterStatusComponent_BP_C")
+                        {
+                            List<PrimalDinoStat> stats = [];
+                            stats.AddRange(GetStatsFromPrimalDino(export));
+                            JObject? properties;
+                            if (!fullClassData.ContainsKey("Properties"))
+                            {
+                                fullClassData.Add("Properties", new JObject());
+                            }
+                            properties = (JObject)fullClassData["Properties"];
+                            foreach (PrimalDinoStat stat in stats)
+                            {
+                                Dictionary<string, object> props = new Dictionary<string, object>
+                                {
+                                    { "BaseValue", stat.Value },
+                                    { "WildPerLevel", stat.WildPerLevel },
+                                    { "TamedPerLevel", stat.TamedPerLevel },
+                                    { "TamingReward", stat.TamingReward },
+                                    { "EffectivenessReward", stat.EffectivenessReward },
+                                    { "MaxGainedPerLevelUpIsPercent", stat.MaxGainedPerLevelUpIsPercent },
+                                    { "CanLevelUpValue", stat.CanLevelUpValue },
+                                    { "DontUseValue", stat.DontUseValue },
+                                };
+                                properties.Add(stat.StatName.ToString(), JObject.FromObject(props));
+                            }
+                        }
+                        else if (makeup.First().ExportType.Contains("PrimalItem"))
+                        {
+                            List<PrimalItemStat> stats = [];
+                            stats.AddRange(GetStatsFromPrimalItem(export));
+                            JObject? properties;
+                            if (!fullClassData.ContainsKey("Properties"))
+                            {
+                                fullClassData.Add("Properties", new JObject());
+                            }
+                            properties = (JObject)fullClassData["Properties"];
+                            foreach (PrimalItemStat stat in stats)
+                            {
+                                Dictionary<string, object> props = new Dictionary<string, object>
+                                {
+                                    { "Used", stat.Used },
+                                    { "CalculateAsPercent", stat.CalculateAsPercent },
+                                    { "DisplayAsPercent", stat.DisplayAsPercent },
+                                    { "RequiresSubmerged", stat.RequiresSubmerged },
+                                    { "PreventIfSubmerged", stat.PreventIfSubmerged },
+                                    { "HideStatFromTooltip", stat.HideStatFromTooltip },
+                                    { "DefaultModifierValue", stat.DefaultModifierValue },
+                                    { "RandomizerRangeOverride", stat.RandomizerRangeOverride },
+                                    { "RandomizerRangeMultiplier", stat.RandomizerRangeMultiplier },
+                                    { "StateModifierScale", stat.StateModifierScale },
+                                    { "InitialValueConstant", stat.InitialValueConstant },
+                                    { "RatingValueMultiplier", stat.RatingValueMultiplier },
+                                    { "AbsoluteMaxValue", stat.AbsoluteMaxValue },
+                                };
+                                properties.Add(stat.StatName.ToString(), JObject.FromObject(props));
+                            }
+                        }
                         data.Add(fullClassData);
                     }
 
@@ -137,7 +196,8 @@ namespace UtocDumper
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Exception caused by {entry.Name} \nException: {ex.Message}");
+                    Console.WriteLine($"Exception caused by {entry.Name} \nException: {ex.StackTrace}");
+                    return;
                 }
             }
         }
@@ -188,6 +248,164 @@ namespace UtocDumper
                 result.Merge(jsonObj, mergeSettings);
             }
             return result;
+        }
+
+        private static List<PrimalDinoStat> GetStatsFromPrimalDino(UObject export)
+        {
+            List<UObject> makeup = GetClassMakeup(export);
+            List<PrimalDinoStat> stats = [.. PrimalDinoStat.BaseStats];
+            // Goes in backwards order so overrides should override
+            foreach (UObject parentClass in makeup)
+            {
+                foreach (FPropertyTag tag in parentClass.Properties)
+                {
+                    if (tag.Tag == null)
+                        continue;
+
+                    PrimalDinoStatName statName = (PrimalDinoStatName)tag.ArrayIndex;
+                    foreach (PrimalDinoStat stat in stats)
+                    {
+                        if (stat.StatName != statName)
+                        {
+                            continue;
+                        }
+
+                        if (tag.Tag.GetType() == typeof(FloatProperty))
+                        {
+                            float val = tag.Tag.GetValue<float>();
+                            switch (tag.Name.PlainText)
+                            {
+                                case "MaxStatusValues":
+                                    stat.Value = val;
+                                    break;
+                                case "AmountMaxGainedPerLevelUpValueTamed":
+                                    stat.TamedPerLevel = val;
+                                    break;
+                                case "AmountMaxGainedPerLevelUpValue":
+                                    stat.WildPerLevel = val;
+                                    break;
+                            }
+                        }
+                        else if (tag.Tag.GetType() == typeof(ByteProperty))
+                        {
+                            byte val = tag.Tag.GetValue<byte>();
+                            switch (tag.Name.PlainText)
+                            {                                
+                                case "MaxGainedPerLevelUpIsPercent":
+                                    stat.MaxGainedPerLevelUpIsPercent = val == 1;
+                                    break;
+                                case "CanLevelUpValue":
+                                    stat.CanLevelUpValue = val == 1;
+                                    break;
+                                case "DontUseValue":
+                                    stat.DontUseValue = val == 1;
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+            return stats;
+        }
+
+        private static List<PrimalItemStat> GetStatsFromPrimalItem(UObject export)
+        {
+            List<UObject> makeup = GetClassMakeup(export);
+            List<PrimalItemStat> stats = [.. PrimalItemStat.BaseStats];
+            // Goes in backwards order so overrides should override
+            foreach (UObject parentClass in makeup)
+            {
+                foreach (FPropertyTag tag in parentClass.Properties)
+                {
+                    if (tag.Tag == null)
+                        continue;
+
+                    PrimalItemStatName statName = (PrimalItemStatName)tag.ArrayIndex;
+                    foreach (PrimalItemStat stat in stats)
+                    {
+                        if (stat.StatName != statName)
+                        {
+                            continue;
+                        }
+
+                        if (tag.Tag.GetValue<UScriptStruct>() != null)
+                        {
+                            UScriptStruct data = tag.Tag.GetValue<UScriptStruct>();
+                            if (data.StructType.GetType() != typeof(FStructFallback))
+                                continue;
+
+                            FStructFallback fallback = (FStructFallback)data.StructType;
+                            foreach (FPropertyTag fallbackTag in fallback.Properties)
+                            {
+                                if (fallbackTag.Tag == null)
+                                    continue;
+
+                                if (fallbackTag.Tag.GetType() == typeof(FloatProperty))
+                                {
+                                    float val = fallbackTag.Tag.GetValue<float>();
+                                    switch (fallbackTag.Name.PlainText)
+                                    {
+                                        case "RandomizerRangeMultiplier":
+                                            stat.RandomizerRangeMultiplier = val;
+                                            break;
+                                        case "StateModifierScale":
+                                            stat.StateModifierScale = val;
+                                            break;
+                                        case "InitialValueConstant":
+                                            stat.InitialValueConstant = val;
+                                            break;
+                                        case "RatingValueMultiplier":
+                                            stat.RatingValueMultiplier = val;
+                                            break;
+                                        case "AbsoluteMaxValue":
+                                            stat.AbsoluteMaxValue = val;
+                                            break;
+                                    }
+                                }
+                                else if (fallbackTag.Tag.GetType() == typeof(BoolProperty))
+                                {
+                                    bool val = fallbackTag.Tag.GetValue<bool>();
+                                    switch (fallbackTag.Name.PlainText)
+                                    {
+                                        case "bUsed":
+                                            stat.Used = val;
+                                            break;
+                                        case "bCalculateAsPercent":
+                                            stat.CalculateAsPercent = val;
+                                            break;
+                                        case "bDisplayAsPercent":
+                                            stat.DisplayAsPercent = val;
+                                            break;
+                                        case "bRequiresSubmerged":
+                                            stat.RequiresSubmerged = val;
+                                            break;
+                                        case "bPreventIfSubmerged":
+                                            stat.PreventIfSubmerged = val;
+                                            break;
+                                        case "bHideStatFromTooltip":
+                                            stat.HideStatFromTooltip = val;
+                                            break;
+                                    }
+                                }
+                                else if (fallbackTag.Tag.GetType() == typeof(IntProperty))
+                                {
+                                    int val = fallbackTag.Tag.GetValue<int>();
+                                    switch (fallbackTag.Name.PlainText)
+                                    {
+                                        case "DefaultModifierValue":
+                                            stat.DefaultModifierValue = val;
+                                            break;
+                                        case "RandomizerRangeOverride":
+                                            stat.RandomizerRangeOverride = val;
+                                            break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return stats;
         }
     }
 }
