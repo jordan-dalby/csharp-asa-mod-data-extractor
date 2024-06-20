@@ -197,7 +197,6 @@ namespace UtocDumper
                 catch (Exception ex)
                 {
                     Console.WriteLine($"Exception caused by {entry.Name} \nException: {ex.StackTrace}");
-                    return;
                 }
             }
         }
