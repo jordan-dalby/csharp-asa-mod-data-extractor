@@ -140,7 +140,7 @@ namespace UtocDumper
                                     { "TamedPerLevel", stat.TamedPerLevel },
                                     { "TamingReward", stat.TamingReward },
                                     { "EffectivenessReward", stat.EffectivenessReward },
-                                    { "MaxGainedPerLevelUpIsPercent", stat.MaxGainedPerLevelUpIsPercent },
+                                    { "MaxGainedPerLevelUpIsPercent", stat.MaxGainedPerLevelUpValueIsPercent },
                                     { "CanLevelUpValue", stat.CanLevelUpValue },
                                     { "DontUseValue", stat.DontUseValue },
                                 };
@@ -260,7 +260,7 @@ namespace UtocDumper
                 TamedPerLevel = stat.TamedPerLevel,
                 TamingReward = stat.TamingReward,
                 EffectivenessReward = stat.EffectivenessReward,
-                MaxGainedPerLevelUpIsPercent = stat.MaxGainedPerLevelUpIsPercent,
+                MaxGainedPerLevelUpValueIsPercent = stat.MaxGainedPerLevelUpValueIsPercent,
                 CanLevelUpValue = stat.CanLevelUpValue,
                 DontUseValue = stat.DontUseValue
             }).ToList();
@@ -308,7 +308,7 @@ namespace UtocDumper
                             switch (tag.Name.PlainText)
                             {                                
                                 case "MaxGainedPerLevelUpValueIsPercent":
-                                    stat.MaxGainedPerLevelUpIsPercent = val == 1;
+                                    stat.MaxGainedPerLevelUpValueIsPercent = val == 1;
                                     break;
                                 case "CanLevelUpValue":
                                     stat.CanLevelUpValue = val == 1;

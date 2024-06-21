@@ -26,7 +26,7 @@ public class PrimalDinoStat
             TamedPerLevel = 0.2f,
             TamingReward = 0.5f,
             EffectivenessReward = 0.0f,
-            MaxGainedPerLevelUpIsPercent = true,
+            MaxGainedPerLevelUpValueIsPercent = true,
             CanLevelUpValue = true,
             DontUseValue = false
         },
@@ -38,7 +38,7 @@ public class PrimalDinoStat
             TamedPerLevel = 0.1f,
             TamingReward = 0.0f,
             EffectivenessReward = 0.0f,
-            MaxGainedPerLevelUpIsPercent = true,
+            MaxGainedPerLevelUpValueIsPercent = true,
             CanLevelUpValue = true,
             DontUseValue = false
         },
@@ -50,7 +50,7 @@ public class PrimalDinoStat
             TamedPerLevel = 0.0f,
             TamingReward = 0.5f,
             EffectivenessReward = 0.0f,
-            MaxGainedPerLevelUpIsPercent = true,
+            MaxGainedPerLevelUpValueIsPercent = true,
             CanLevelUpValue = false,
             DontUseValue = false
         },
@@ -62,7 +62,7 @@ public class PrimalDinoStat
             TamedPerLevel = 0.1f,
             TamingReward = 0.0f,
             EffectivenessReward = 0.0f,
-            MaxGainedPerLevelUpIsPercent = true,
+            MaxGainedPerLevelUpValueIsPercent = true,
             CanLevelUpValue = true,
             DontUseValue = false
         },
@@ -74,7 +74,7 @@ public class PrimalDinoStat
             TamedPerLevel = 0.1f,
             TamingReward = 0.0f,
             EffectivenessReward = 0.0f,
-            MaxGainedPerLevelUpIsPercent = true,
+            MaxGainedPerLevelUpValueIsPercent = true,
             CanLevelUpValue = true,
             DontUseValue = false
         },
@@ -86,7 +86,7 @@ public class PrimalDinoStat
             TamedPerLevel = 0.1f,
             TamingReward = 0.0f,
             EffectivenessReward = 0.0f,
-            MaxGainedPerLevelUpIsPercent = true,
+            MaxGainedPerLevelUpValueIsPercent = true,
             CanLevelUpValue = false,
             DontUseValue = true
         },
@@ -98,7 +98,7 @@ public class PrimalDinoStat
             TamedPerLevel = 0.0f,
             TamingReward = 0.0f,
             EffectivenessReward = 0.0f,
-            MaxGainedPerLevelUpIsPercent = true,
+            MaxGainedPerLevelUpValueIsPercent = true,
             CanLevelUpValue = false,
             DontUseValue = true
         },
@@ -110,7 +110,7 @@ public class PrimalDinoStat
             TamedPerLevel = 0.04f,
             TamingReward = 0.0f,
             EffectivenessReward = 0.0f,
-            MaxGainedPerLevelUpIsPercent = true,
+            MaxGainedPerLevelUpValueIsPercent = true,
             CanLevelUpValue = true,
             DontUseValue = false
         },
@@ -122,7 +122,7 @@ public class PrimalDinoStat
             TamedPerLevel = 0.1f,
             TamingReward = 0.5f,
             EffectivenessReward = 0.4f,
-            MaxGainedPerLevelUpIsPercent = true,
+            MaxGainedPerLevelUpValueIsPercent = true,
             CanLevelUpValue = true,
             DontUseValue = false
         },
@@ -134,7 +134,7 @@ public class PrimalDinoStat
             TamedPerLevel = 0.01f,
             TamingReward = 0.0f,
             EffectivenessReward = 0.0f,
-            MaxGainedPerLevelUpIsPercent = true,
+            MaxGainedPerLevelUpValueIsPercent = true,
             CanLevelUpValue = true,
             DontUseValue = false
         },
@@ -146,7 +146,7 @@ public class PrimalDinoStat
             TamedPerLevel = 0.0f,
             TamingReward = 0.0f,
             EffectivenessReward = 0.0f,
-            MaxGainedPerLevelUpIsPercent = true,
+            MaxGainedPerLevelUpValueIsPercent = true,
             CanLevelUpValue = false,
             DontUseValue = true
         },
@@ -158,7 +158,7 @@ public class PrimalDinoStat
             TamedPerLevel = 0.0f,
             TamingReward = 0.0f,
             EffectivenessReward = 0.0f,
-            MaxGainedPerLevelUpIsPercent = true,
+            MaxGainedPerLevelUpValueIsPercent = true,
             CanLevelUpValue = false,
             DontUseValue = true
         }
@@ -170,7 +170,7 @@ public class PrimalDinoStat
     public float TamedPerLevel;
     public float TamingReward;
     public float EffectivenessReward;
-    public bool MaxGainedPerLevelUpIsPercent;
+    public bool MaxGainedPerLevelUpValueIsPercent;
     public bool CanLevelUpValue;
     public bool DontUseValue;
 }
