@@ -252,7 +252,18 @@ namespace UtocDumper
         private static List<PrimalDinoStat> GetStatsFromPrimalDino(UObject export)
         {
             List<UObject> makeup = GetClassMakeup(export);
-            List<PrimalDinoStat> stats = [.. PrimalDinoStat.BaseStats];
+            List<PrimalDinoStat> stats = PrimalDinoStat.BaseStats.Select(stat => new PrimalDinoStat
+            {
+                StatName = stat.StatName,
+                Value = stat.Value,
+                WildPerLevel = stat.WildPerLevel,
+                TamedPerLevel = stat.TamedPerLevel,
+                TamingReward = stat.TamingReward,
+                EffectivenessReward = stat.EffectivenessReward,
+                MaxGainedPerLevelUpIsPercent = stat.MaxGainedPerLevelUpIsPercent,
+                CanLevelUpValue = stat.CanLevelUpValue,
+                DontUseValue = stat.DontUseValue
+            }).ToList();
             // Goes in backwards order so overrides should override
             foreach (UObject parentClass in makeup)
             {
@@ -283,6 +294,12 @@ namespace UtocDumper
                                 case "AmountMaxGainedPerLevelUpValue":
                                     stat.WildPerLevel = val;
                                     break;
+                                case "TamingMaxStatMultipliers":
+                                    stat.EffectivenessReward = val;
+                                    break;
+                                case "TamingMaxStatAdditions":
+                                    stat.TamingReward = val;
+                                    break;
                             }
                         }
                         else if (tag.Tag.GetType() == typeof(ByteProperty))
@@ -290,7 +307,7 @@ namespace UtocDumper
                             byte val = tag.Tag.GetValue<byte>();
                             switch (tag.Name.PlainText)
                             {                                
-                                case "MaxGainedPerLevelUpIsPercent":
+                                case "MaxGainedPerLevelUpValueIsPercent":
                                     stat.MaxGainedPerLevelUpIsPercent = val == 1;
                                     break;
                                 case "CanLevelUpValue":
@@ -310,7 +327,23 @@ namespace UtocDumper
         private static List<PrimalItemStat> GetStatsFromPrimalItem(UObject export)
         {
             List<UObject> makeup = GetClassMakeup(export);
-            List<PrimalItemStat> stats = [.. PrimalItemStat.BaseStats];
+            List<PrimalItemStat> stats = PrimalItemStat.BaseStats.Select(stat => new PrimalItemStat
+            {
+                StatName = stat.StatName,
+                Used = stat.Used,
+                CalculateAsPercent = stat.CalculateAsPercent,
+                DisplayAsPercent = stat.DisplayAsPercent,
+                RequiresSubmerged = stat.RequiresSubmerged,
+                PreventIfSubmerged = stat.PreventIfSubmerged,
+                HideStatFromTooltip = stat.HideStatFromTooltip,
+                DefaultModifierValue = stat.DefaultModifierValue,
+                RandomizerRangeOverride = stat.RandomizerRangeOverride,
+                RandomizerRangeMultiplier = stat.RandomizerRangeMultiplier,
+                StateModifierScale = stat.StateModifierScale,
+                InitialValueConstant = stat.InitialValueConstant,
+                RatingValueMultiplier = stat.RatingValueMultiplier,
+                AbsoluteMaxValue = stat.AbsoluteMaxValue
+            }).ToList();
             // Goes in backwards order so overrides should override
             foreach (UObject parentClass in makeup)
             {
