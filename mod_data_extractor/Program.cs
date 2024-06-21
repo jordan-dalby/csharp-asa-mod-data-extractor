@@ -283,6 +283,12 @@ namespace UtocDumper
                                 case "AmountMaxGainedPerLevelUpValue":
                                     stat.WildPerLevel = val;
                                     break;
+                                case "TamingMaxStatMultipliers":
+                                    stat.EffectivenessReward = val;
+                                    break;
+                                case "TamingMaxStatAdditions":
+                                    stat.TamingReward = val;
+                                    break;
                             }
                         }
                         else if (tag.Tag.GetType() == typeof(ByteProperty))
@@ -290,7 +296,7 @@ namespace UtocDumper
                             byte val = tag.Tag.GetValue<byte>();
                             switch (tag.Name.PlainText)
                             {                                
-                                case "MaxGainedPerLevelUpIsPercent":
+                                case "MaxGainedPerLevelUpValueIsPercent":
                                     stat.MaxGainedPerLevelUpIsPercent = val == 1;
                                     break;
                                 case "CanLevelUpValue":
