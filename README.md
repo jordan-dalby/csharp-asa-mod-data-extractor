@@ -17,9 +17,12 @@ This tool can be used either with a server set up, or an ARK Survival Ascended f
                    blank to extract everything  
   
   -f, --file-types (Default: uasset) Optional, declare a list of file types of interest,
-                   all other file types will be skipped
+                   all other file types will be skipped  
   
-e.g. `mod_data_extractor.exe --debug --input "c:\my\path" --output "c:\my\other\path" --badfile "c:\my\path\badfiles.txt"`  
+  -v, --version    (Default: GAME_UE5_2) The UE version to use for parsing, see
+                    https://github.com/FabianFG/CUE4Parse/blob/master/CUE4Parse/UE4/Versions/EGame.cs  
+  
+e.g. `mod_data_extractor.exe --debug --input "c:\my\path" --output "c:\my\other\path" --badfile "c:\my\path\badfiles.txt" --version GAME_UE5_2`  
   
 A sample badfiles.txt is provided  
   
