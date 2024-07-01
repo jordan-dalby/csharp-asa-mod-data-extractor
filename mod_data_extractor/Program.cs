@@ -9,6 +9,7 @@ using CUE4Parse.UE4.Assets.Exports;
 using CUE4Parse.UE4.Assets;
 using CUE4Parse.UE4.Assets.Objects;
 using CUE4Parse.UE4.Assets.Objects.Properties;
+using CUE4Parse.UE4.AssetRegistry;
 
 namespace UtocDumper
 {
@@ -111,7 +112,29 @@ namespace UtocDumper
 
                 try
                 {
+                    // Concat output file path
+                    string filePath = Path.Combine(outputPath, entry.PathWithoutExtension + ".json");
+                    // Create missing directories if not exists
+                    string? directoryName = new FileInfo(filePath).DirectoryName;
+                    if (directoryName == null)
+                    {
+                        Console.WriteLine($"Failed to create directory {filePath} because the DirectoryName was null");
+                        continue;
+                    }
+                    Directory.CreateDirectory(directoryName);
+
                     // Load all of the objects from the uasset file
+                    if (entry.Extension == "bin")
+                    {
+                        if (provider.TryCreateReader(entry.Path, out var archive))
+                        {
+                            var registry = new FAssetRegistryState(archive);
+                            // Write
+                            File.WriteAllText(filePath, JsonConvert.SerializeObject(registry, Formatting.Indented));
+                        }
+                        continue;
+                    }
+
                     var exports = provider.LoadAllObjects(entry.Path);
 
                     // UObjects themselves actually on contain the changes from the parent, so to get all values we need
@@ -180,17 +203,6 @@ namespace UtocDumper
                         }
                         data.Add(fullClassData);
                     }
-
-                    // Concat output file path
-                    string filePath = Path.Combine(outputPath, entry.PathWithoutExtension + ".json");
-                    // Create missing directories if not exists
-                    string? directoryName = new FileInfo(filePath).DirectoryName;
-                    if (directoryName == null)
-                    {
-                        Console.WriteLine($"Failed to create directory {filePath} because the DirectoryName was null");
-                        continue;
-                    }
-                    Directory.CreateDirectory(directoryName);
                     // Serialize to string and write
                     File.WriteAllText(filePath, JsonConvert.SerializeObject(data, Formatting.Indented));
                 }
