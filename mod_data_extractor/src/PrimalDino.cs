@@ -1,3 +1,8 @@
+using CUE4Parse.UE4.Assets.Exports;
+using CUE4Parse.UE4.Assets.Objects;
+using CUE4Parse.UE4.Assets.Objects.Properties;
+using ModDataExtractor;
+
 public enum PrimalDinoStatName
 {
     Health = 0,
@@ -173,4 +178,79 @@ public class PrimalDinoStat
     public bool MaxGainedPerLevelUpValueIsPercent;
     public bool CanLevelUpValue;
     public bool DontUseValue;
+
+    public static List<PrimalDinoStat> GetStatsFromPrimalDino(UObject export)
+    {
+        List<UObject> makeup = Helpers.GetClassMakeup(export);
+        List<PrimalDinoStat> stats = BaseStats.Select(stat => new PrimalDinoStat
+        {
+            StatName = stat.StatName,
+            Value = stat.Value,
+            WildPerLevel = stat.WildPerLevel,
+            TamedPerLevel = stat.TamedPerLevel,
+            TamingReward = stat.TamingReward,
+            EffectivenessReward = stat.EffectivenessReward,
+            MaxGainedPerLevelUpValueIsPercent = stat.MaxGainedPerLevelUpValueIsPercent,
+            CanLevelUpValue = stat.CanLevelUpValue,
+            DontUseValue = stat.DontUseValue
+        }).ToList();
+        // Goes in backwards order so overrides should override
+        foreach (UObject parentClass in makeup)
+        {
+            foreach (FPropertyTag tag in parentClass.Properties)
+            {
+                if (tag.Tag == null)
+                    continue;
+
+                PrimalDinoStatName statName = (PrimalDinoStatName)tag.ArrayIndex;
+                foreach (PrimalDinoStat stat in stats)
+                {
+                    if (stat.StatName != statName)
+                    {
+                        continue;
+                    }
+
+                    if (tag.Tag.GetType() == typeof(FloatProperty))
+                    {
+                        float val = tag.Tag.GetValue<float>();
+                        switch (tag.Name.PlainText)
+                        {
+                            case "MaxStatusValues":
+                                stat.Value = val;
+                                break;
+                            case "AmountMaxGainedPerLevelUpValueTamed":
+                                stat.TamedPerLevel = val;
+                                break;
+                            case "AmountMaxGainedPerLevelUpValue":
+                                stat.WildPerLevel = val;
+                                break;
+                            case "TamingMaxStatMultipliers":
+                                stat.EffectivenessReward = val;
+                                break;
+                            case "TamingMaxStatAdditions":
+                                stat.TamingReward = val;
+                                break;
+                        }
+                    }
+                    else if (tag.Tag.GetType() == typeof(ByteProperty))
+                    {
+                        byte val = tag.Tag.GetValue<byte>();
+                        switch (tag.Name.PlainText)
+                        {                                
+                            case "MaxGainedPerLevelUpValueIsPercent":
+                                stat.MaxGainedPerLevelUpValueIsPercent = val == 1;
+                                break;
+                            case "CanLevelUpValue":
+                                stat.CanLevelUpValue = val == 1;
+                                break;
+                            case "DontUseValue":
+                                stat.DontUseValue = val == 1;
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+        return stats;
+    }
 }
