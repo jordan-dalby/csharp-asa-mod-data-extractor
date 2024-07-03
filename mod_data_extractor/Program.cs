@@ -90,7 +90,7 @@ namespace UtocDumper
                 if (targets.Any())
                 {
                     // evaluate if the current entry is a valid target, otherwise skip this iteration
-                    bool isValidTarget = targets.Any(target => entry.Path.Contains(target, StringComparison.InvariantCultureIgnoreCase));
+                    bool isValidTarget = targets.Any(target => Regex.IsMatch(entry.Path, target));
                     if (!isValidTarget)
                     {
                         continue;
