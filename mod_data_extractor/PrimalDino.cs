@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public enum PrimalDinoStatName
 {
     Health = 0,

@@ -10,6 +10,14 @@ using CUE4Parse.UE4.Assets;
 using CUE4Parse.UE4.Assets.Objects;
 using CUE4Parse.UE4.Assets.Objects.Properties;
 using CUE4Parse.UE4.AssetRegistry;
+using System.Collections.Generic;
+using System.Linq;
+using System.IO;
+using System;
+using CUE4Parse.UE4.Objects.UObject;
+using Serilog;
+using Serilog.Events;
+using CUE4Parse.Compression;
 
 namespace UtocDumper
 {
@@ -23,9 +31,6 @@ namespace UtocDumper
 
             [Option('o', "output", Required = true, HelpText = "The directory to output files to")]
             public string OutputDirectory { get; set; } = "";
-
-            [Option('b', "badfile", Required = false, HelpText = "Location of a file containing line-by-line items to skip, regex enabled")]
-            public string BadFileDirectory { get; set; } = "";
 
             [Option('d', "debug", Required = false, HelpText = "Set debug mode to true or false.", Default = false)]
             public bool Debug { get; set; } = false;
@@ -44,6 +49,14 @@ namespace UtocDumper
 
         static void Main(string[] args)
         {
+            // Very low level logging, only enable if necessary
+            /*
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Verbose()
+                .WriteTo.Console()
+                .CreateLogger();
+            */
+
             var options = Parser.Default.ParseArguments<Options>(args);
             if (options.Errors.Any())
             {
@@ -53,23 +66,18 @@ namespace UtocDumper
 
             string inputPath = options.Value.InputDirectory;
             string outputPath = options.Value.OutputDirectory;
-            string badFilePath = options.Value.BadFileDirectory;
 
-            List<string> badFiles = new List<string>();
-            if (File.Exists(badFilePath))
+            List<string> targets = [.. options.Value.Targets];
+
+            if (OodleHelper.DownloadOodleDll("./oo2core_9_win64.dll"))
             {
-                badFiles.AddRange(File.ReadAllLines(badFilePath).ToList());
+                OodleHelper.Initialize("./oo2core_9_win64.dll");
             }
             else
             {
-                if (badFilePath.Length > 0)
-                {
-                    Console.WriteLine($"Couldn't find badfile at {badFilePath}");
-                    return;
-                }
+                Console.WriteLine("Unable to initialise Oodle");
+                return;
             }
-
-            List<string> targets = [.. options.Value.Targets];
 
             // Create the default file provider from the base directory, basically does everything for you
             AbstractVfsFileProvider provider = new DefaultFileProvider(directory: inputPath, searchOption: SearchOption.AllDirectories, isCaseInsensitive: true, versions: new VersionContainer(options.Value.UEVersion));
@@ -95,13 +103,6 @@ namespace UtocDumper
                     {
                         continue;
                     }
-                }
-
-                // check if the file is a "bad file", i.e. one that is known to cause issues with CUE4Parse
-                bool isBadFile = badFiles.Any(badFile => Regex.IsMatch(entry.Path, ".*" + badFile + ".*", RegexOptions.IgnoreCase));
-                if (isBadFile)
-                {
-                    continue;
                 }
 
                 // debug
@@ -372,9 +373,9 @@ namespace UtocDumper
                             continue;
                         }
 
-                        if (tag.Tag.GetValue<UScriptStruct>() != null)
+                        if (tag.Tag.GetValue<FScriptStruct>() != null)
                         {
-                            UScriptStruct data = tag.Tag.GetValue<UScriptStruct>();
+                            FScriptStruct data = tag.Tag.GetValue<FScriptStruct>();
                             if (data.StructType.GetType() != typeof(FStructFallback))
                                 continue;
 

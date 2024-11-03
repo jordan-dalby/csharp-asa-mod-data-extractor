@@ -1,0 +1,7 @@
+[submodule "CUE4Parse-Natives/ACL/external/acl"]
+	path = CUE4Parse-Natives/ACL/external/acl
+	url = https://github.com/nfrechette/acl.git
+
+[submodule "CUE4Parse"]
+    path = CUE4Parse
+	url = https://github.com/FabianFG/CUE4Parse.git

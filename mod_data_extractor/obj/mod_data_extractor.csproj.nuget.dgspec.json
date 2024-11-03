@@ -1,25 +1,109 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Google Drive\\vscode-workspace\\cs_mod_data_extractor\\mod_data_extractor\\mod_data_extractor.csproj": {}
+    "C:\\Users\\jorda\\Desktop\\Projects\\cs_mod_data_extractor\\mod_data_extractor\\mod_data_extractor.csproj": {}
   },
   "projects": {
-    "E:\\Google Drive\\vscode-workspace\\cs_mod_data_extractor\\mod_data_extractor\\mod_data_extractor.csproj": {
-      "version": "1.0.0",
+    "C:\\Users\\jorda\\Desktop\\Projects\\cs_mod_data_extractor\\CUE4Parse\\CUE4Parse-Conversion\\CUE4Parse-Conversion.csproj": {
+      "version": "1.1.1",
       "restore": {
-        "projectUniqueName": "E:\\Google Drive\\vscode-workspace\\cs_mod_data_extractor\\mod_data_extractor\\mod_data_extractor.csproj",
-        "projectName": "mod_data_extractor",
-        "projectPath": "E:\\Google Drive\\vscode-workspace\\cs_mod_data_extractor\\mod_data_extractor\\mod_data_extractor.csproj",
+        "projectUniqueName": "C:\\Users\\jorda\\Desktop\\Projects\\cs_mod_data_extractor\\CUE4Parse\\CUE4Parse-Conversion\\CUE4Parse-Conversion.csproj",
+        "projectName": "CUE4Parse-Conversion",
+        "projectPath": "C:\\Users\\jorda\\Desktop\\Projects\\cs_mod_data_extractor\\CUE4Parse\\CUE4Parse-Conversion\\CUE4Parse-Conversion.csproj",
         "packagesPath": "C:\\Users\\jorda\\.nuget\\packages\\",
-        "outputPath": "E:\\Google Drive\\vscode-workspace\\cs_mod_data_extractor\\mod_data_extractor\\obj\\",
+        "outputPath": "C:\\Users\\jorda\\Desktop\\Projects\\cs_mod_data_extractor\\CUE4Parse\\CUE4Parse-Conversion\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jorda\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\jorda\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\jorda\\Desktop\\Projects\\cs_mod_data_extractor\\CUE4Parse\\CUE4Parse\\CUE4Parse.csproj": {
+                "projectPath": "C:\\Users\\jorda\\Desktop\\Projects\\cs_mod_data_extractor\\CUE4Parse\\CUE4Parse\\CUE4Parse.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AssetRipper.TextureDecoder": {
+              "target": "Package",
+              "version": "[2.2.1, )"
+            },
+            "SharpGLTF.Core": {
+              "target": "Package",
+              "version": "[1.0.0-alpha0023, )"
+            },
+            "SharpGLTF.Toolkit": {
+              "target": "Package",
+              "version": "[1.0.0-alpha0023, )"
+            },
+            "SkiaSharp": {
+              "target": "Package",
+              "version": "[2.88.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\jorda\\Desktop\\Projects\\cs_mod_data_extractor\\CUE4Parse\\CUE4Parse\\CUE4Parse.csproj": {
+      "version": "1.1.1",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\jorda\\Desktop\\Projects\\cs_mod_data_extractor\\CUE4Parse\\CUE4Parse\\CUE4Parse.csproj",
+        "projectName": "CUE4Parse",
+        "projectPath": "C:\\Users\\jorda\\Desktop\\Projects\\cs_mod_data_extractor\\CUE4Parse\\CUE4Parse\\CUE4Parse.csproj",
+        "packagesPath": "C:\\Users\\jorda\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jorda\\Desktop\\Projects\\cs_mod_data_extractor\\CUE4Parse\\CUE4Parse\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\jorda\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,21 +127,61 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "CUE4Parse": {
+            "Blake3": {
               "target": "Package",
-              "version": "[1.1.1, )"
+              "version": "[1.1.0, )"
             },
-            "CommandLineParser": {
+            "BouncyCastle.Cryptography": {
               "target": "Package",
-              "version": "[2.9.1, )"
+              "version": "[2.4.0, )"
+            },
+            "Infrablack.UE4Config": {
+              "target": "Package",
+              "version": "[0.7.2.97, )"
+            },
+            "K4os.Compression.LZ4.Streams": {
+              "target": "Package",
+              "version": "[1.3.8, )"
+            },
+            "LZMA-SDK": {
+              "target": "Package",
+              "version": "[22.1.1, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
             },
-            "Oodle.net": {
+            "OffiUtils": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
+            "Oodle.NET": {
               "target": "Package",
               "version": "[2.0.2, )"
+            },
+            "Serilog": {
+              "target": "Package",
+              "version": "[4.0.2, )"
+            },
+            "Serilog.Sinks.Console": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "System.Memory": {
+              "target": "Package",
+              "version": "[4.5.5, )"
+            },
+            "System.Runtime.CompilerServices.Unsafe": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Zlib-ng.NET": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            },
+            "ZstdSharp.Port": {
+              "target": "Package",
+              "version": "[0.8.1, )"
             }
           },
           "imports": [
@@ -76,7 +200,88 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\jorda\\Desktop\\Projects\\cs_mod_data_extractor\\mod_data_extractor\\mod_data_extractor.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\jorda\\Desktop\\Projects\\cs_mod_data_extractor\\mod_data_extractor\\mod_data_extractor.csproj",
+        "projectName": "mod_data_extractor",
+        "projectPath": "C:\\Users\\jorda\\Desktop\\Projects\\cs_mod_data_extractor\\mod_data_extractor\\mod_data_extractor.csproj",
+        "packagesPath": "C:\\Users\\jorda\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jorda\\Desktop\\Projects\\cs_mod_data_extractor\\mod_data_extractor\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\jorda\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\jorda\\Desktop\\Projects\\cs_mod_data_extractor\\CUE4Parse\\CUE4Parse-Conversion\\CUE4Parse-Conversion.csproj": {
+                "projectPath": "C:\\Users\\jorda\\Desktop\\Projects\\cs_mod_data_extractor\\CUE4Parse\\CUE4Parse-Conversion\\CUE4Parse-Conversion.csproj"
+              },
+              "C:\\Users\\jorda\\Desktop\\Projects\\cs_mod_data_extractor\\CUE4Parse\\CUE4Parse\\CUE4Parse.csproj": {
+                "projectPath": "C:\\Users\\jorda\\Desktop\\Projects\\cs_mod_data_extractor\\CUE4Parse\\CUE4Parse\\CUE4Parse.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "CommandLineParser": {
+              "target": "Package",
+              "version": "[2.9.1, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "Serilog": {
+              "target": "Package",
+              "version": "[4.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
