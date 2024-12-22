@@ -18,6 +18,8 @@ using CUE4Parse.UE4.Objects.UObject;
 using Serilog;
 using Serilog.Events;
 using CUE4Parse.Compression;
+using Newtonsoft.Json.Converters;
+using System.Globalization;
 
 namespace UtocDumper
 {
@@ -46,6 +48,11 @@ namespace UtocDumper
         }
 
         private static JsonMergeSettings mergeSettings = new JsonMergeSettings() { MergeArrayHandling = MergeArrayHandling.Replace };
+        private static JsonSerializerSettings jsonSettings = new JsonSerializerSettings 
+        { 
+            Formatting = Formatting.Indented,
+            Converters = new List<JsonConverter> { new FloatConverter() }
+        };
 
         static void Main(string[] args)
         {
@@ -131,7 +138,7 @@ namespace UtocDumper
                         {
                             var registry = new FAssetRegistryState(archive);
                             // Write
-                            File.WriteAllText(filePath, JsonConvert.SerializeObject(registry, Formatting.Indented));
+                            File.WriteAllText(filePath, JsonConvert.SerializeObject(registry, jsonSettings));
                         }
                         continue;
                     }
@@ -205,7 +212,7 @@ namespace UtocDumper
                         data.Add(fullClassData);
                     }
                     // Serialize to string and write
-                    File.WriteAllText(filePath, JsonConvert.SerializeObject(data, Formatting.Indented));
+                    File.WriteAllText(filePath, JsonConvert.SerializeObject(data, jsonSettings));
                 }
                 catch (Exception ex)
                 {
