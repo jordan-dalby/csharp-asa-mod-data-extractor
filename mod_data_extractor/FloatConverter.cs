@@ -12,6 +12,14 @@ public class FloatConverter : JsonConverter<float>
 
     public override void WriteJson(JsonWriter writer, float value, JsonSerializer serializer)
     {
-        writer.WriteRawValue(value.ToString("F10", CultureInfo.InvariantCulture).TrimEnd('0').TrimEnd('.'));
+        if (float.IsNaN(value) || float.IsInfinity(value))
+        {
+            // Handle NaN values by writing null or 0
+            writer.WriteNull();
+        }
+        else
+        {
+            writer.WriteRawValue(value.ToString("F10", CultureInfo.InvariantCulture).TrimEnd('0').TrimEnd('.'));
+        }
     }
 } 
