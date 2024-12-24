@@ -19,7 +19,7 @@ public class FloatConverter : JsonConverter<float>
         }
         else
         {
-            writer.WriteRawValue(value.ToString("F1", CultureInfo.InvariantCulture).TrimEnd('0').TrimEnd('.'));
+            writer.WriteRawValue(value.ToString("F6", CultureInfo.InvariantCulture).TrimEnd('0').TrimEnd('.'));
         }
     }
 } 

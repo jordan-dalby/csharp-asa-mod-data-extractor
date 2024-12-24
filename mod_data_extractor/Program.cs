@@ -171,7 +171,7 @@ namespace UtocDumper
                                     { "TamedPerLevel", stat.TamedPerLevel },
                                     { "TamingReward", stat.TamingReward },
                                     { "EffectivenessReward", stat.EffectivenessReward },
-                                    { "MaxGainedPerLevelUpIsPercent", stat.MaxGainedPerLevelUpValueIsPercent },
+                                    { "MaxGainedPerLevelUpValueIsPercent", stat.MaxGainedPerLevelUpValueIsPercent },
                                     { "CanLevelUpValue", stat.CanLevelUpValue },
                                     { "DontUseValue", stat.DontUseValue },
                                 };
