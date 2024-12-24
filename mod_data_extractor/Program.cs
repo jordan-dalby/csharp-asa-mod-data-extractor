@@ -9,6 +9,17 @@ using CUE4Parse.UE4.Assets.Exports;
 using CUE4Parse.UE4.Assets;
 using CUE4Parse.UE4.Assets.Objects;
 using CUE4Parse.UE4.Assets.Objects.Properties;
+using CUE4Parse.UE4.AssetRegistry;
+using System.Collections.Generic;
+using System.Linq;
+using System.IO;
+using System;
+using CUE4Parse.UE4.Objects.UObject;
+using Serilog;
+using Serilog.Events;
+using CUE4Parse.Compression;
+using Newtonsoft.Json.Converters;
+using System.Globalization;
 
 namespace UtocDumper
 {
@@ -22,9 +33,6 @@ namespace UtocDumper
 
             [Option('o', "output", Required = true, HelpText = "The directory to output files to")]
             public string OutputDirectory { get; set; } = "";
-
-            [Option('b', "badfile", Required = false, HelpText = "Location of a file containing line-by-line items to skip, regex enabled")]
-            public string BadFileDirectory { get; set; } = "";
 
             [Option('d', "debug", Required = false, HelpText = "Set debug mode to true or false.", Default = false)]
             public bool Debug { get; set; } = false;
@@ -40,9 +48,22 @@ namespace UtocDumper
         }
 
         private static JsonMergeSettings mergeSettings = new JsonMergeSettings() { MergeArrayHandling = MergeArrayHandling.Replace };
+        private static JsonSerializerSettings jsonSettings = new JsonSerializerSettings 
+        { 
+            Formatting = Formatting.Indented,
+            Converters = new List<JsonConverter> { new FloatConverter() }
+        };
 
         static void Main(string[] args)
         {
+            // Very low level logging, only enable if necessary
+            /*
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Verbose()
+                .WriteTo.Console()
+                .CreateLogger();
+            */
+
             var options = Parser.Default.ParseArguments<Options>(args);
             if (options.Errors.Any())
             {
@@ -52,23 +73,18 @@ namespace UtocDumper
 
             string inputPath = options.Value.InputDirectory;
             string outputPath = options.Value.OutputDirectory;
-            string badFilePath = options.Value.BadFileDirectory;
 
-            List<string> badFiles = new List<string>();
-            if (File.Exists(badFilePath))
+            List<string> targets = [.. options.Value.Targets];
+
+            if (OodleHelper.DownloadOodleDll("./oo2core_9_win64.dll"))
             {
-                badFiles.AddRange(File.ReadAllLines(badFilePath).ToList());
+                OodleHelper.Initialize("./oo2core_9_win64.dll");
             }
             else
             {
-                if (badFilePath.Length > 0)
-                {
-                    Console.WriteLine($"Couldn't find badfile at {badFilePath}");
-                    return;
-                }
+                Console.WriteLine("Unable to initialise Oodle");
+                return;
             }
-
-            List<string> targets = [.. options.Value.Targets];
 
             // Create the default file provider from the base directory, basically does everything for you
             AbstractVfsFileProvider provider = new DefaultFileProvider(directory: inputPath, searchOption: SearchOption.AllDirectories, isCaseInsensitive: true, versions: new VersionContainer(options.Value.UEVersion));
@@ -89,18 +105,11 @@ namespace UtocDumper
                 if (targets.Any())
                 {
                     // evaluate if the current entry is a valid target, otherwise skip this iteration
-                    bool isValidTarget = targets.Any(target => entry.Path.Contains(target, StringComparison.InvariantCultureIgnoreCase));
+                    bool isValidTarget = targets.Any(target => Regex.IsMatch(entry.Path, target));
                     if (!isValidTarget)
                     {
                         continue;
                     }
-                }
-
-                // check if the file is a "bad file", i.e. one that is known to cause issues with CUE4Parse
-                bool isBadFile = badFiles.Any(badFile => Regex.IsMatch(entry.Path, ".*" + badFile + ".*", RegexOptions.IgnoreCase));
-                if (isBadFile)
-                {
-                    continue;
                 }
 
                 // debug
@@ -111,7 +120,29 @@ namespace UtocDumper
 
                 try
                 {
+                    // Concat output file path
+                    string filePath = Path.Combine(outputPath, entry.PathWithoutExtension + ".json");
+                    // Create missing directories if not exists
+                    string? directoryName = new FileInfo(filePath).DirectoryName;
+                    if (directoryName == null)
+                    {
+                        Console.WriteLine($"Failed to create directory {filePath} because the DirectoryName was null");
+                        continue;
+                    }
+                    Directory.CreateDirectory(directoryName);
+
                     // Load all of the objects from the uasset file
+                    if (entry.Extension == "bin")
+                    {
+                        if (provider.TryCreateReader(entry.Path, out var archive))
+                        {
+                            var registry = new FAssetRegistryState(archive);
+                            // Write
+                            File.WriteAllText(filePath, JsonConvert.SerializeObject(registry, jsonSettings));
+                        }
+                        continue;
+                    }
+
                     var exports = provider.LoadAllObjects(entry.Path);
 
                     // UObjects themselves actually on contain the changes from the parent, so to get all values we need
@@ -140,7 +171,7 @@ namespace UtocDumper
                                     { "TamedPerLevel", stat.TamedPerLevel },
                                     { "TamingReward", stat.TamingReward },
                                     { "EffectivenessReward", stat.EffectivenessReward },
-                                    { "MaxGainedPerLevelUpIsPercent", stat.MaxGainedPerLevelUpIsPercent },
+                                    { "MaxGainedPerLevelUpIsPercent", stat.MaxGainedPerLevelUpValueIsPercent },
                                     { "CanLevelUpValue", stat.CanLevelUpValue },
                                     { "DontUseValue", stat.DontUseValue },
                                 };
@@ -180,19 +211,8 @@ namespace UtocDumper
                         }
                         data.Add(fullClassData);
                     }
-
-                    // Concat output file path
-                    string filePath = Path.Combine(outputPath, entry.PathWithoutExtension + ".json");
-                    // Create missing directories if not exists
-                    string? directoryName = new FileInfo(filePath).DirectoryName;
-                    if (directoryName == null)
-                    {
-                        Console.WriteLine($"Failed to create directory {filePath} because the DirectoryName was null");
-                        continue;
-                    }
-                    Directory.CreateDirectory(directoryName);
                     // Serialize to string and write
-                    File.WriteAllText(filePath, JsonConvert.SerializeObject(data, Formatting.Indented));
+                    File.WriteAllText(filePath, JsonConvert.SerializeObject(data, jsonSettings));
                 }
                 catch (Exception ex)
                 {
@@ -252,7 +272,18 @@ namespace UtocDumper
         private static List<PrimalDinoStat> GetStatsFromPrimalDino(UObject export)
         {
             List<UObject> makeup = GetClassMakeup(export);
-            List<PrimalDinoStat> stats = [.. PrimalDinoStat.BaseStats];
+            List<PrimalDinoStat> stats = PrimalDinoStat.BaseStats.Select(stat => new PrimalDinoStat
+            {
+                StatName = stat.StatName,
+                Value = stat.Value,
+                WildPerLevel = stat.WildPerLevel,
+                TamedPerLevel = stat.TamedPerLevel,
+                TamingReward = stat.TamingReward,
+                EffectivenessReward = stat.EffectivenessReward,
+                MaxGainedPerLevelUpValueIsPercent = stat.MaxGainedPerLevelUpValueIsPercent,
+                CanLevelUpValue = stat.CanLevelUpValue,
+                DontUseValue = stat.DontUseValue
+            }).ToList();
             // Goes in backwards order so overrides should override
             foreach (UObject parentClass in makeup)
             {
@@ -297,7 +328,7 @@ namespace UtocDumper
                             switch (tag.Name.PlainText)
                             {                                
                                 case "MaxGainedPerLevelUpValueIsPercent":
-                                    stat.MaxGainedPerLevelUpIsPercent = val == 1;
+                                    stat.MaxGainedPerLevelUpValueIsPercent = val == 1;
                                     break;
                                 case "CanLevelUpValue":
                                     stat.CanLevelUpValue = val == 1;
@@ -316,7 +347,23 @@ namespace UtocDumper
         private static List<PrimalItemStat> GetStatsFromPrimalItem(UObject export)
         {
             List<UObject> makeup = GetClassMakeup(export);
-            List<PrimalItemStat> stats = [.. PrimalItemStat.BaseStats];
+            List<PrimalItemStat> stats = PrimalItemStat.BaseStats.Select(stat => new PrimalItemStat
+            {
+                StatName = stat.StatName,
+                Used = stat.Used,
+                CalculateAsPercent = stat.CalculateAsPercent,
+                DisplayAsPercent = stat.DisplayAsPercent,
+                RequiresSubmerged = stat.RequiresSubmerged,
+                PreventIfSubmerged = stat.PreventIfSubmerged,
+                HideStatFromTooltip = stat.HideStatFromTooltip,
+                DefaultModifierValue = stat.DefaultModifierValue,
+                RandomizerRangeOverride = stat.RandomizerRangeOverride,
+                RandomizerRangeMultiplier = stat.RandomizerRangeMultiplier,
+                StateModifierScale = stat.StateModifierScale,
+                InitialValueConstant = stat.InitialValueConstant,
+                RatingValueMultiplier = stat.RatingValueMultiplier,
+                AbsoluteMaxValue = stat.AbsoluteMaxValue
+            }).ToList();
             // Goes in backwards order so overrides should override
             foreach (UObject parentClass in makeup)
             {
@@ -333,9 +380,9 @@ namespace UtocDumper
                             continue;
                         }
 
-                        if (tag.Tag.GetValue<UScriptStruct>() != null)
+                        if (tag.Tag.GetValue<FScriptStruct>() != null)
                         {
-                            UScriptStruct data = tag.Tag.GetValue<UScriptStruct>();
+                            FScriptStruct data = tag.Tag.GetValue<FScriptStruct>();
                             if (data.StructType.GetType() != typeof(FStructFallback))
                                 continue;
 
