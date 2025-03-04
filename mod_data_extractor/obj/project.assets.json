@@ -11,15 +11,15 @@
           "lib/net8.0/AssetRipper.TextureDecoder.dll": {}
         }
       },
-      "Blake3/1.1.0": {
+      "Blake3/2.0.0": {
         "type": "package",
         "compile": {
-          "lib/net7.0/Blake3.dll": {
+          "lib/net8.0/Blake3.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net7.0/Blake3.dll": {
+          "lib/net8.0/Blake3.dll": {
             "related": ".xml"
           }
         },
@@ -58,7 +58,7 @@
           }
         }
       },
-      "BouncyCastle.Cryptography/2.4.0": {
+      "BouncyCastle.Cryptography/2.5.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/BouncyCastle.Cryptography.dll": {
@@ -84,15 +84,15 @@
           }
         }
       },
-      "CommunityToolkit.HighPerformance/8.2.2": {
+      "CommunityToolkit.HighPerformance/8.3.2": {
         "type": "package",
         "compile": {
-          "lib/net7.0/CommunityToolkit.HighPerformance.dll": {
+          "lib/net8.0/CommunityToolkit.HighPerformance.dll": {
             "related": ".pdb;.xml"
           }
         },
         "runtime": {
-          "lib/net7.0/CommunityToolkit.HighPerformance.dll": {
+          "lib/net8.0/CommunityToolkit.HighPerformance.dll": {
             "related": ".pdb;.xml"
           }
         }
@@ -176,10 +176,10 @@
           }
         }
       },
-      "OffiUtils/1.2.0": {
+      "OffiUtils/2.0.1": {
         "type": "package",
         "dependencies": {
-          "CommunityToolkit.HighPerformance": "8.2.2"
+          "CommunityToolkit.HighPerformance": "8.3.2"
         },
         "compile": {
           "lib/net8.0/OffiUtils.dll": {}
@@ -188,7 +188,7 @@
           "lib/net8.0/OffiUtils.dll": {}
         }
       },
-      "Oodle.NET/2.0.2": {
+      "Oodle.NET/2.1.0": {
         "type": "package",
         "compile": {
           "lib/net8.0/Oodle.NET.dll": {
@@ -201,7 +201,7 @@
           }
         }
       },
-      "Serilog/4.0.2": {
+      "Serilog/4.2.0": {
         "type": "package",
         "compile": {
           "lib/net8.0/Serilog.dll": {
@@ -259,11 +259,11 @@
           }
         }
       },
-      "SkiaSharp/2.88.8": {
+      "SkiaSharp/2.88.9": {
         "type": "package",
         "dependencies": {
-          "SkiaSharp.NativeAssets.Win32": "2.88.8",
-          "SkiaSharp.NativeAssets.macOS": "2.88.8"
+          "SkiaSharp.NativeAssets.Win32": "2.88.9",
+          "SkiaSharp.NativeAssets.macOS": "2.88.9"
         },
         "compile": {
           "lib/net6.0/SkiaSharp.dll": {
@@ -276,7 +276,7 @@
           }
         }
       },
-      "SkiaSharp.NativeAssets.macOS/2.88.8": {
+      "SkiaSharp.NativeAssets.macOS/2.88.9": {
         "type": "package",
         "compile": {
           "lib/net6.0/_._": {}
@@ -291,7 +291,7 @@
           }
         }
       },
-      "SkiaSharp.NativeAssets.Win32/2.88.8": {
+      "SkiaSharp.NativeAssets.Win32/2.88.9": {
         "type": "package",
         "compile": {
           "lib/net6.0/_._": {}
@@ -330,32 +330,7 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
-      "System.Memory/4.5.5": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp2.1/_._": {}
-        },
-        "runtime": {
-          "lib/netcoreapp2.1/_._": {}
-        }
-      },
-      "System.Runtime.CompilerServices.Unsafe/6.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/netcoreapp3.1/_._": {}
-        }
-      },
-      "Zlib-ng.NET/1.0.1": {
+      "Zlib-ng.NET/1.1.1": {
         "type": "package",
         "compile": {
           "lib/net8.0/Zlib-ng.NET.dll": {
@@ -368,7 +343,7 @@
           }
         }
       },
-      "ZstdSharp.Port/0.8.1": {
+      "ZstdSharp.Port/0.8.4": {
         "type": "package",
         "compile": {
           "lib/net8.0/ZstdSharp.dll": {}
@@ -377,24 +352,22 @@
           "lib/net8.0/ZstdSharp.dll": {}
         }
       },
-      "CUE4Parse/1.1.1": {
+      "CUE4Parse/1.2.2": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "Blake3": "1.1.0",
-          "BouncyCastle.Cryptography": "2.4.0",
+          "Blake3": "2.0.0",
+          "BouncyCastle.Cryptography": "2.5.0",
           "Infrablack.UE4Config": "0.7.2.97",
           "K4os.Compression.LZ4.Streams": "1.3.8",
           "LZMA-SDK": "22.1.1",
           "Newtonsoft.Json": "13.0.3",
-          "OffiUtils": "1.2.0",
-          "Oodle.NET": "2.0.2",
-          "Serilog": "4.0.2",
+          "OffiUtils": "2.0.1",
+          "Oodle.NET": "2.1.0",
+          "Serilog": "4.2.0",
           "Serilog.Sinks.Console": "6.0.0",
-          "System.Memory": "4.5.5",
-          "System.Runtime.CompilerServices.Unsafe": "6.0.0",
-          "Zlib-ng.NET": "1.0.1",
-          "ZstdSharp.Port": "0.8.1"
+          "Zlib-ng.NET": "1.1.1",
+          "ZstdSharp.Port": "0.8.4"
         },
         "compile": {
           "bin/placeholder/CUE4Parse.dll": {}
@@ -403,15 +376,15 @@
           "bin/placeholder/CUE4Parse.dll": {}
         }
       },
-      "CUE4Parse-Conversion/1.1.1": {
+      "CUE4Parse-Conversion/1.2.1": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "AssetRipper.TextureDecoder": "2.2.1",
-          "CUE4Parse": "1.1.1",
+          "CUE4Parse": "1.2.2",
           "SharpGLTF.Core": "1.0.0-alpha0023",
           "SharpGLTF.Toolkit": "1.0.0-alpha0023",
-          "SkiaSharp": "2.88.8"
+          "SkiaSharp": "2.88.9"
         },
         "compile": {
           "bin/placeholder/CUE4Parse-Conversion.dll": {}
@@ -436,17 +409,17 @@
         "lib/net8.0/TextureDecoder.xml"
       ]
     },
-    "Blake3/1.1.0": {
-      "sha512": "/gWRFsXYeIFof8YAoFJwzv2fYjSTCo+6vvTSL6pyXw2ZLXQdRvEyXhO43jyDfEFBCTxMxWpoHbIcIEIF6a3QdQ==",
+    "Blake3/2.0.0": {
+      "sha512": "v447kojeuNYSY5dvtVGG2bv1+M3vOWJXcrYWwXho/2uUpuwK6qPeu5WSMlqLm4VRJu96kysVO11La0zN3dLAuQ==",
       "type": "package",
-      "path": "blake3/1.1.0",
+      "path": "blake3/2.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "blake3.1.1.0.nupkg.sha512",
+        "blake3.2.0.0.nupkg.sha512",
         "blake3.nuspec",
-        "lib/net7.0/Blake3.dll",
-        "lib/net7.0/Blake3.xml",
+        "lib/net8.0/Blake3.dll",
+        "lib/net8.0/Blake3.xml",
         "logo.png",
         "runtimes/linux-arm/native/libblake3_dotnet.so",
         "runtimes/linux-arm64/native/libblake3_dotnet.so",
@@ -458,16 +431,16 @@
         "runtimes/win-x86/native/blake3_dotnet.dll"
       ]
     },
-    "BouncyCastle.Cryptography/2.4.0": {
-      "sha512": "SwXsAV3sMvAU/Nn31pbjhWurYSjJ+/giI/0n6tCrYoupEK34iIHCuk3STAd9fx8yudM85KkLSVdn951vTng/vQ==",
+    "BouncyCastle.Cryptography/2.5.0": {
+      "sha512": "rc7vRCq/KD3GtIwSgRtjanGaBwTb9nLenFDZnEcauWlssuuEoxcbMfWA3QWWho6QDMSOSkWjs657McdHzEtEcw==",
       "type": "package",
-      "path": "bouncycastle.cryptography/2.4.0",
+      "path": "bouncycastle.cryptography/2.5.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.md",
         "README.md",
-        "bouncycastle.cryptography.2.4.0.nupkg.sha512",
+        "bouncycastle.cryptography.2.5.0.nupkg.sha512",
         "bouncycastle.cryptography.nuspec",
         "lib/net461/BouncyCastle.Cryptography.dll",
         "lib/net461/BouncyCastle.Cryptography.xml",
@@ -500,17 +473,17 @@
         "lib/netstandard2.0/CommandLine.xml"
       ]
     },
-    "CommunityToolkit.HighPerformance/8.2.2": {
-      "sha512": "+zIp8d3sbtYaRbM6hqDs4Ui/z34j7DcUmleruZlYLE4CVxXq+MO8XJyIs42vzeTYFX+k0Iq1dEbBUnQ4z/Gnrw==",
+    "CommunityToolkit.HighPerformance/8.3.2": {
+      "sha512": "1Os81ua0FmIOtiSgOk5C1KBraQ3SDfxs/7BG4qDagm48nGplr//lAVqLH9I2TLDVqRFdhqTUaEITFA5Ho/Ovkw==",
       "type": "package",
-      "path": "communitytoolkit.highperformance/8.2.2",
+      "path": "communitytoolkit.highperformance/8.3.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "License.md",
         "ThirdPartyNotices.txt",
-        "communitytoolkit.highperformance.8.2.2.nupkg.sha512",
+        "communitytoolkit.highperformance.8.3.2.nupkg.sha512",
         "communitytoolkit.highperformance.nuspec",
         "lib/net6.0/CommunityToolkit.HighPerformance.dll",
         "lib/net6.0/CommunityToolkit.HighPerformance.pdb",
@@ -518,6 +491,9 @@
         "lib/net7.0/CommunityToolkit.HighPerformance.dll",
         "lib/net7.0/CommunityToolkit.HighPerformance.pdb",
         "lib/net7.0/CommunityToolkit.HighPerformance.xml",
+        "lib/net8.0/CommunityToolkit.HighPerformance.dll",
+        "lib/net8.0/CommunityToolkit.HighPerformance.pdb",
+        "lib/net8.0/CommunityToolkit.HighPerformance.xml",
         "lib/netstandard2.0/CommunityToolkit.HighPerformance.dll",
         "lib/netstandard2.0/CommunityToolkit.HighPerformance.pdb",
         "lib/netstandard2.0/CommunityToolkit.HighPerformance.xml",
@@ -648,38 +624,40 @@
         "packageIcon.png"
       ]
     },
-    "OffiUtils/1.2.0": {
-      "sha512": "grOyoAXjExVRwQV773tKIxa+9s7aEOv1vsZiB/dfuSIyfvXi7JXhzpQeKsDjq26PeVF/z/RLkbRTnkkXaobP7A==",
+    "OffiUtils/2.0.1": {
+      "sha512": "tu2rqpbba2Qss5tWqKK5pYgfKKLCUawGTuZ/XrqVx5bUAlgDH4hUvd8DzShQ/RGHul3x/hwGTD6khzSR8yzgxw==",
       "type": "package",
-      "path": "offiutils/1.2.0",
+      "path": "offiutils/2.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "LICENSE",
         "icon.png",
         "lib/net8.0/OffiUtils.dll",
-        "offiutils.1.2.0.nupkg.sha512",
+        "lib/net9.0/OffiUtils.dll",
+        "offiutils.2.0.1.nupkg.sha512",
         "offiutils.nuspec"
       ]
     },
-    "Oodle.NET/2.0.2": {
-      "sha512": "XhBTAhBZoX6apf2ofivweW424H1P5oI2Y6pvUMfBMwIIbxkJ8uq2ugnxHS8pX9nt0+xWcPSmLOCBzL/eGy/iuA==",
+    "Oodle.NET/2.1.0": {
+      "sha512": "kQGCpQeM3eUvm4lOdzEfd2C1aUO1dmJJj0YTjMdJGoeqVNTayk8hSLt2cW73yRXBgCI8AMF/mubMJFOTZ9myHA==",
       "type": "package",
-      "path": "oodle.net/2.0.2",
+      "path": "oodle.net/2.1.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "icon.png",
         "lib/net8.0/Oodle.NET.dll",
         "lib/net8.0/Oodle.NET.xml",
-        "oodle.net.2.0.2.nupkg.sha512",
+        "lib/net9.0/Oodle.NET.dll",
+        "lib/net9.0/Oodle.NET.xml",
+        "oodle.net.2.1.0.nupkg.sha512",
         "oodle.net.nuspec"
       ]
     },
-    "Serilog/4.0.2": {
-      "sha512": "Vehq4uNYtURe/OnHEpWGvMgrvr5Vou7oZLdn3BuEH5FSCeHXDpNJtpzWoqywXsSvCTuiv0I65mZDRnJSeUvisA==",
+    "Serilog/4.2.0": {
+      "sha512": "gmoWVOvKgbME8TYR+gwMf7osROiWAURterc6Rt2dQyX7wtjZYpqFiA/pY6ztjGQKKV62GGCyOcmtP1UKMHgSmA==",
       "type": "package",
-      "path": "serilog/4.0.2",
+      "path": "serilog/4.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -693,9 +671,11 @@
         "lib/net6.0/Serilog.xml",
         "lib/net8.0/Serilog.dll",
         "lib/net8.0/Serilog.xml",
+        "lib/net9.0/Serilog.dll",
+        "lib/net9.0/Serilog.xml",
         "lib/netstandard2.0/Serilog.dll",
         "lib/netstandard2.0/Serilog.xml",
-        "serilog.4.0.2.nupkg.sha512",
+        "serilog.4.2.0.nupkg.sha512",
         "serilog.nuspec"
       ]
     },
@@ -758,10 +738,10 @@
         "sharpgltf.toolkit.nuspec"
       ]
     },
-    "SkiaSharp/2.88.8": {
-      "sha512": "bRkp3uKp5ZI8gXYQT57uKwil1uobb2p8c69n7v5evlB/2JNcMAXVcw9DZAP5Ig3WSvgzGm2YSn27UVeOi05NlA==",
+    "SkiaSharp/2.88.9": {
+      "sha512": "3MD5VHjXXieSHCleRLuaTXmL2pD0mB7CcOB1x2kA1I4bhptf4e3R27iM93264ZYuAq6mkUyX5XbcxnZvMJYc1Q==",
       "type": "package",
-      "path": "skiasharp/2.88.8",
+      "path": "skiasharp/2.88.9",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -828,14 +808,14 @@
         "lib/xamarinwatchos1.0/SkiaSharp.dll",
         "lib/xamarinwatchos1.0/SkiaSharp.pdb",
         "lib/xamarinwatchos1.0/SkiaSharp.xml",
-        "skiasharp.2.88.8.nupkg.sha512",
+        "skiasharp.2.88.9.nupkg.sha512",
         "skiasharp.nuspec"
       ]
     },
-    "SkiaSharp.NativeAssets.macOS/2.88.8": {
-      "sha512": "6Kn5TSkKlfyS6azWHF3Jk2sW5C4jCE5uSshM/5AbfFrR+5n6qM5XEnz9h4VaVl7LTxBvHvMkuPb/3bpbq0vxTw==",
+    "SkiaSharp.NativeAssets.macOS/2.88.9": {
+      "sha512": "Nv5spmKc4505Ep7oUoJ5vp3KweFpeNqxpyGDWyeEPTX2uR6S6syXIm3gj75dM0YJz7NPvcix48mR5laqs8dPuA==",
       "type": "package",
-      "path": "skiasharp.nativeassets.macos/2.88.8",
+      "path": "skiasharp.nativeassets.macos/2.88.9",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -854,14 +834,14 @@
         "lib/netstandard1.3/_._",
         "lib/xamarinmac2.0/_._",
         "runtimes/osx/native/libSkiaSharp.dylib",
-        "skiasharp.nativeassets.macos.2.88.8.nupkg.sha512",
+        "skiasharp.nativeassets.macos.2.88.9.nupkg.sha512",
         "skiasharp.nativeassets.macos.nuspec"
       ]
     },
-    "SkiaSharp.NativeAssets.Win32/2.88.8": {
-      "sha512": "O9QXoWEXA+6cweR4h3BOnwMz+pO9vL9mXdjLrpDd0w1QzCgWmLQBxa1VgySDITiH7nQndrDG1h6937zm9pLj1Q==",
+    "SkiaSharp.NativeAssets.Win32/2.88.9": {
+      "sha512": "wb2kYgU7iy84nQLYZwMeJXixvK++GoIuECjU4ECaUKNuflyRlJKyiRhN1MAHswvlvzuvkrjRWlK0Za6+kYQK7w==",
       "type": "package",
-      "path": "skiasharp.nativeassets.win32/2.88.8",
+      "path": "skiasharp.nativeassets.win32/2.88.9",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -876,7 +856,7 @@
         "runtimes/win-arm64/native/libSkiaSharp.dll",
         "runtimes/win-x64/native/libSkiaSharp.dll",
         "runtimes/win-x86/native/libSkiaSharp.dll",
-        "skiasharp.nativeassets.win32.2.88.8.nupkg.sha512",
+        "skiasharp.nativeassets.win32.2.88.9.nupkg.sha512",
         "skiasharp.nativeassets.win32.nuspec"
       ]
     },
@@ -905,72 +885,26 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Memory/4.5.5": {
-      "sha512": "XIWiDvKPXaTveaB7HVganDlOCRoj03l+jrwNvcge/t8vhGYKvqV+dMv6G4SAX2NoNmN0wZfVPTAlFwZcZvVOUw==",
+    "Zlib-ng.NET/1.1.1": {
+      "sha512": "VuO3aiVg0ow/BdCPJHkObfdQ+IX+veaXY2IbDOxt+QSsly5M/ieY8arpvosffoKbVyYwgLz8boXu1UaH52YPYQ==",
       "type": "package",
-      "path": "system.memory/4.5.5",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/System.Memory.dll",
-        "lib/net461/System.Memory.xml",
-        "lib/netcoreapp2.1/_._",
-        "lib/netstandard1.1/System.Memory.dll",
-        "lib/netstandard1.1/System.Memory.xml",
-        "lib/netstandard2.0/System.Memory.dll",
-        "lib/netstandard2.0/System.Memory.xml",
-        "ref/netcoreapp2.1/_._",
-        "system.memory.4.5.5.nupkg.sha512",
-        "system.memory.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
-      ]
-    },
-    "System.Runtime.CompilerServices.Unsafe/6.0.0": {
-      "sha512": "/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
-      "type": "package",
-      "path": "system.runtime.compilerservices.unsafe/6.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "buildTransitive/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.targets",
-        "buildTransitive/netcoreapp3.1/_._",
-        "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/net461/System.Runtime.CompilerServices.Unsafe.xml",
-        "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/net6.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.xml",
-        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
-        "system.runtime.compilerservices.unsafe.nuspec",
-        "useSharedDesignerContext.txt"
-      ]
-    },
-    "Zlib-ng.NET/1.0.1": {
-      "sha512": "8SSAFU6PM3jfb6Ugn3SKxDmHUmIw/z9yPK2+v7BpsGxvgPXIftVHzJ7GijaLdK1yVTon6NK6TJtPYdkUgmcR2w==",
-      "type": "package",
-      "path": "zlib-ng.net/1.0.1",
+      "path": "zlib-ng.net/1.1.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "icon.png",
         "lib/net8.0/Zlib-ng.NET.dll",
         "lib/net8.0/Zlib-ng.NET.xml",
-        "zlib-ng.net.1.0.1.nupkg.sha512",
+        "lib/net9.0/Zlib-ng.NET.dll",
+        "lib/net9.0/Zlib-ng.NET.xml",
+        "zlib-ng.net.1.1.1.nupkg.sha512",
         "zlib-ng.net.nuspec"
       ]
     },
-    "ZstdSharp.Port/0.8.1": {
-      "sha512": "19tNz33kn2EkyViFXuxfVn338UJaRmkwBphVqP2dVJIYQUQgFrgG5h061mxkRRg1Ax6r+6WOj1FxaFZ5qaWqqg==",
+    "ZstdSharp.Port/0.8.4": {
+      "sha512": "eieSXq3kakCUXbgdxkKaRqWS6hF0KBJcqok9LlDCs60GOyrynLvPOcQ0pRw7shdPF7lh/VepJ9cP9n9HHc759g==",
       "type": "package",
-      "path": "zstdsharp.port/0.8.1",
+      "path": "zstdsharp.port/0.8.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -979,19 +913,20 @@
         "lib/net6.0/ZstdSharp.dll",
         "lib/net7.0/ZstdSharp.dll",
         "lib/net8.0/ZstdSharp.dll",
+        "lib/net9.0/ZstdSharp.dll",
         "lib/netcoreapp3.1/ZstdSharp.dll",
         "lib/netstandard2.0/ZstdSharp.dll",
         "lib/netstandard2.1/ZstdSharp.dll",
-        "zstdsharp.port.0.8.1.nupkg.sha512",
+        "zstdsharp.port.0.8.4.nupkg.sha512",
         "zstdsharp.port.nuspec"
       ]
     },
-    "CUE4Parse/1.1.1": {
+    "CUE4Parse/1.2.2": {
       "type": "project",
       "path": "../CUE4Parse/CUE4Parse/CUE4Parse.csproj",
       "msbuildProject": "../CUE4Parse/CUE4Parse/CUE4Parse.csproj"
     },
-    "CUE4Parse-Conversion/1.1.1": {
+    "CUE4Parse-Conversion/1.2.1": {
       "type": "project",
       "path": "../CUE4Parse/CUE4Parse-Conversion/CUE4Parse-Conversion.csproj",
       "msbuildProject": "../CUE4Parse/CUE4Parse-Conversion/CUE4Parse-Conversion.csproj"
@@ -999,11 +934,11 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "CUE4Parse >= 1.1.1",
-      "CUE4Parse-Conversion >= 1.1.1",
+      "CUE4Parse >= 1.2.2",
+      "CUE4Parse-Conversion >= 1.2.1",
       "CommandLineParser >= 2.9.1",
       "Newtonsoft.Json >= 13.0.3",
-      "Serilog >= 4.0.2"
+      "Serilog >= 4.2.0"
     ]
   },
   "packageFolders": {
@@ -1067,7 +1002,7 @@
           },
           "Serilog": {
             "target": "Package",
-            "version": "[4.0.2, )"
+            "version": "[4.2.0, )"
           }
         },
         "imports": [

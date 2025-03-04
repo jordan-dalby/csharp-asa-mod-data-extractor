@@ -43,7 +43,7 @@ namespace UtocDumper
             [Option('f', "file-types", Required = false, HelpText = "Optional argument to specify filetypes to search for", Default = new string[] { "uasset" })]
             public IEnumerable<string> FileTypes { get; set; } = ["uasset"];
             
-            [Option('v', "version", Required = false, HelpText = "The UE version to use for parsing, see https://github.com/FabianFG/CUE4Parse/blob/master/CUE4Parse/UE4/Versions/EGame.cs", Default = EGame.GAME_UE5_2)]
+            [Option('v', "version", Required = false, HelpText = "The UE version to use for parsing, see https://github.com/FabianFG/CUE4Parse/blob/master/CUE4Parse/UE4/Versions/EGame.cs", Default = EGame.GAME_ARKSurvivalAscended)]
             public EGame UEVersion { get; set; } = EGame.GAME_UE5_2;
         }
 
@@ -87,7 +87,7 @@ namespace UtocDumper
             }
 
             // Create the default file provider from the base directory, basically does everything for you
-            AbstractVfsFileProvider provider = new DefaultFileProvider(directory: inputPath, searchOption: SearchOption.AllDirectories, isCaseInsensitive: true, versions: new VersionContainer(options.Value.UEVersion));
+            AbstractVfsFileProvider provider = new DefaultFileProvider(directory: inputPath, searchOption: SearchOption.AllDirectories, versions: new VersionContainer(options.Value.UEVersion), pathComparer: StringComparer.OrdinalIgnoreCase);
 
             // Initialize and mount the file provider
             provider.Initialize();
@@ -143,7 +143,7 @@ namespace UtocDumper
                         continue;
                     }
 
-                    var exports = provider.LoadAllObjects(entry.Path);
+                    var exports = provider.LoadPackage(entry.Path).GetExports();
 
                     // UObjects themselves actually on contain the changes from the parent, so to get all values we need
                     // to get values from the parents, as deep as it goes, the following handles that
