@@ -97,6 +97,15 @@
           }
         }
       },
+      "GenericReader/2.2.3": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/GenericReader.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/GenericReader.dll": {}
+        }
+      },
       "Infrablack.UE4Config/0.7.2.97": {
         "type": "package",
         "compile": {
@@ -259,6 +268,22 @@
           }
         }
       },
+      "SixLabors.ImageSharp/3.1.8": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/SixLabors.ImageSharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/SixLabors.ImageSharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/_._": {}
+        }
+      },
       "SkiaSharp/2.88.9": {
         "type": "package",
         "dependencies": {
@@ -358,6 +383,7 @@
         "dependencies": {
           "Blake3": "2.0.0",
           "BouncyCastle.Cryptography": "2.5.0",
+          "GenericReader": "2.2.3",
           "Infrablack.UE4Config": "0.7.2.97",
           "K4os.Compression.LZ4.Streams": "1.3.8",
           "LZMA-SDK": "22.1.1",
@@ -384,6 +410,7 @@
           "CUE4Parse": "1.2.2",
           "SharpGLTF.Core": "1.0.0-alpha0023",
           "SharpGLTF.Toolkit": "1.0.0-alpha0023",
+          "SixLabors.ImageSharp": "3.1.8",
           "SkiaSharp": "2.88.9"
         },
         "compile": {
@@ -500,6 +527,20 @@
         "lib/netstandard2.1/CommunityToolkit.HighPerformance.dll",
         "lib/netstandard2.1/CommunityToolkit.HighPerformance.pdb",
         "lib/netstandard2.1/CommunityToolkit.HighPerformance.xml"
+      ]
+    },
+    "GenericReader/2.2.3": {
+      "sha512": "XZ1aN41VuC5OJP4txDzJvPyd4mRKRgpXvVICxVWn0j8aGr2+SUf20MixQTidxYkkKJ4Rb/THLWnqAwVxWd5Phg==",
+      "type": "package",
+      "path": "genericreader/2.2.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "genericreader.2.2.3.nupkg.sha512",
+        "genericreader.nuspec",
+        "icon.png",
+        "lib/net8.0/GenericReader.dll",
+        "lib/net9.0/GenericReader.dll"
       ]
     },
     "Infrablack.UE4Config/0.7.2.97": {
@@ -736,6 +777,22 @@
         "lib/netstandard2.0/SharpGLTF.Toolkit.xml",
         "sharpgltf.toolkit.1.0.0-alpha0023.nupkg.sha512",
         "sharpgltf.toolkit.nuspec"
+      ]
+    },
+    "SixLabors.ImageSharp/3.1.8": {
+      "sha512": "8eJkROLGh6DBQLR666q2aOpAaean2puZaZ6Ur9YxoyGzjaZhv8OJSxtnDou54+OXMkXtLUdyQC0so47sOsqZjg==",
+      "type": "package",
+      "path": "sixlabors.imagesharp/3.1.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "build/SixLabors.ImageSharp.props",
+        "lib/net6.0/SixLabors.ImageSharp.dll",
+        "lib/net6.0/SixLabors.ImageSharp.xml",
+        "sixlabors.imagesharp.128.png",
+        "sixlabors.imagesharp.3.1.8.nupkg.sha512",
+        "sixlabors.imagesharp.nuspec"
       ]
     },
     "SkiaSharp/2.88.9": {

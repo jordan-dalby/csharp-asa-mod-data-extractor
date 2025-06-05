@@ -14,7 +14,7 @@
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/mod_data_extractor/bin/Debug/net8.0/mod_data_extractor.dll",
-            "args": ["--debug", "--input", "C:\\Users\\jorda\\Desktop\\TestServer\\testserver", "--output", "C:\\Users\\jorda\\Desktop\\CSMDE\\output", "--file-types", "uasset", "--version", "GAME_ARKSurvivalAscended", "--targets", "Cages"],
+            "args": ["--debug", "--input", "C:\\Users\\jorda\\Desktop\\TestServer\\testserver", "--output", "C:\\Users\\jorda\\Desktop\\CSMDE\\output", "--file-types", "uasset", "bin", "--version", "GAME_ARKSurvivalAscended", "--targets", "ResourceGatherers"],
             "cwd": "${workspaceFolder}/mod_data_extractor",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
