@@ -9,8 +9,6 @@ This tool can be used either with a server set up, or an ARK Survival Ascended f
   
   -o, --output     Required. The directory to output files to  
   
-  -b, --badfile    Location of a file containing line-by-line items to skip  
-  
   -d, --debug      (Default: false) Set debug mode to true or false.  
   
   -t, --targets    Optional specific directories to extract data from, leave
@@ -19,12 +17,12 @@ This tool can be used either with a server set up, or an ARK Survival Ascended f
   -f, --file-types (Default: uasset) Optional, declare a list of file types of interest,
                    all other file types will be skipped  
   
-  -v, --version    (Default: GAME_UE5_2) The UE version to use for parsing, see
+  -v, --version    (Default: GAME_ARKSurvivalAscended) The UE version to use for parsing, see
                     https://github.com/FabianFG/CUE4Parse/blob/master/CUE4Parse/UE4/Versions/EGame.cs  
   
-e.g. `mod_data_extractor.exe --debug --input "c:\my\path" --output "c:\my\other\path" --badfile "c:\my\path\badfiles.txt" --version GAME_UE5_2`  
+e.g. `mod_data_extractor.exe --debug --input "c:\my\path" --output "c:\my\other\path"`  
   
-A sample badfiles.txt is provided  
+On Linux: `./mod_data_extractor --input /my/path --output /my/other/path`  
   
-Executables found in the Releases  
+Windows and Linux executables found in the Releases  
 https://github.com/jordan-dalby/csharp-asa-mod-data-extractor/releases
