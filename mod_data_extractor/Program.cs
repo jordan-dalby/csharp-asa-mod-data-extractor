@@ -76,11 +76,8 @@ namespace UtocDumper
 
             List<string> targets = [.. options.Value.Targets];
 
-            if (OodleHelper.DownloadOodleDll("./oo2core_9_win64.dll"))
-            {
-                OodleHelper.Initialize("./oo2core_9_win64.dll");
-            }
-            else
+            OodleHelper.Initialize();
+            if (OodleHelper.Instance is null)
             {
                 Console.WriteLine("Unable to initialise Oodle");
                 return;
