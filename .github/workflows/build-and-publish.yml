@@ -33,7 +33,7 @@ jobs:
           release_name="mod_data_extractor-${{ matrix.target }}"
 
           # Build everything
-          dotnet publish --self-contained true --runtime "${{ matrix.target }}" -p:PublishSingleFile=true -c Release -o "$release_name"
+          dotnet publish mod_data_extractor/mod_data_extractor.csproj --self-contained true --runtime "${{ matrix.target }}" -p:PublishSingleFile=true -c Release -o "$release_name"
 
           # Pack files
           if [ "${{ matrix.target }}" == "win-x64" ]; then
